@@ -11,3 +11,8 @@ wheels/
 
 # environment variables
 .env
+
+# IDE settings
+.idea
+.vscode
+.fleet
