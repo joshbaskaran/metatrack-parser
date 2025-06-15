@@ -53,23 +53,20 @@ def create_pseudomans_project():
 
     if projects.json():
         # check if pseudomonas already exists
-        found = False
         for proj in projects.json():
             if proj["name"] == "pseudomonas":
-                found = True
                 return proj
 
-        if not found:
-            create_project = client.post(
-                f"{API_BASE_URL}/projects/",
-                headers={"Content-Type": "application/json"},
-                json={
-                    "name": "pseudomonas",
-                    "description": "pseudomonas data from UNN",
-                },
-            )
-            create_project.raise_for_status()
-            return create_project.json()
+        create_project = client.post(
+            f"{API_BASE_URL}/projects/",
+            headers={"Content-Type": "application/json"},
+            json={
+                "name": "pseudomonas",
+                "description": "pseudomonas data from UNN",
+            },
+        )
+        create_project.raise_for_status()
+        return create_project.json()
     return {}
 
 
@@ -82,7 +79,7 @@ def create_investigation_if_not_exists(project_id):
             f"{API_BASE_URL}/projects/{project_id}/investigations/",
             headers={"Content-Type": "application/json"},
             json={
-                "filename": "pseudomonas_unn.xlxs",
+                "filename": "pseudomonas_unn.xlsx",
                 "identifier": "pseudomonas",
                 "title": "pseudomonas",
                 "submissionDate": "",
